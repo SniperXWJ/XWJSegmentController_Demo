@@ -7,4 +7,4 @@ XWJSegmentViewController－分页控制器
 3.初始化XWJSegmentViewController对象，并设置它的子控制器数组。  
 4.使用XWJSegmentViewController对象。
 
-(http://github.com/SniperXWJ/XWJSegmentController_Demo/raw/master/images-folder/Snip20160926_2.png)
+![image](http://github.com/SniperXWJ/XWJSegmentController_Demo/raw/master/Snip20160926_2.png)
