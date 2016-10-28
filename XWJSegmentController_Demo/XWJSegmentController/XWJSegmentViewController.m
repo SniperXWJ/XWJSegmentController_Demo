@@ -215,32 +215,10 @@
     
 }
 
-
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    //改变titleNavigator的contentOffset
-    CGFloat distance = CGRectGetMaxX(self.directLine.frame) - self.titleNavigatorView.contentOffset.x - self.titleNavigatorView.frame.size.width;
     
-    if (distance >= 0) {
-        
-        CGPoint offset = self.titleNavigatorView.contentOffset;
-     
-        offset.x += distance + NavigatorButtonBoardSpace;
-        
-        [UIView animateWithDuration:0.3 animations:^{
-            self.titleNavigatorView.contentOffset = offset;
-        }];
-    }
-    CGFloat distance2 = self.directLine.frame.origin.x - self.titleNavigatorView.contentOffset.x;
-    if (distance2 <= 0) {
-        
-        CGPoint offset = self.titleNavigatorView.contentOffset;
-        
-        offset.x -= -distance2 + NavigatorButtonBoardSpace;
-        
-        [UIView animateWithDuration:0.3 animations:^{
-            self.titleNavigatorView.contentOffset = offset;
-        }];
-    }
+    //titleNavigationView偏移
+    [self titleNavigatorChangeContentOffset];
 }
 
 #pragma mark - Others
@@ -283,9 +261,42 @@
     
     //改变contentView的偏移
     [UIView animateWithDuration:0.3 animations:^{
-        self.contentScrollView.contentOffset = CGPointMake(self.selectedIndex * self.view.bounds.size.width, 0);
+        self.contentScrollView.contentOffset = CGPointMake(self.selectedIndex * self.view.bounds.size.width, -64);
     }];
+    
+    //titleNavigationView偏移
+    [self titleNavigatorChangeContentOffset];
 }
 
+
+/**
+ 根据选中按钮的位置偏移按钮到适合的位置不被遮挡
+ */
+- (void)titleNavigatorChangeContentOffset {
+    //改变titleNavigator的contentOffset
+    CGFloat distance = CGRectGetMaxX(self.directLine.frame) - self.titleNavigatorView.contentOffset.x - self.titleNavigatorView.frame.size.width;
+    
+    if (distance >= 0) {
+        
+        CGPoint offset = self.titleNavigatorView.contentOffset;
+        
+        offset.x += distance + NavigatorButtonBoardSpace;
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            self.titleNavigatorView.contentOffset = offset;
+        }];
+    }
+    CGFloat distance2 = self.directLine.frame.origin.x - self.titleNavigatorView.contentOffset.x;
+    if (distance2 <= 0) {
+        
+        CGPoint offset = self.titleNavigatorView.contentOffset;
+        
+        offset.x -= -distance2 + NavigatorButtonBoardSpace;
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            self.titleNavigatorView.contentOffset = offset;
+        }];
+    }
+}
 
 @end
