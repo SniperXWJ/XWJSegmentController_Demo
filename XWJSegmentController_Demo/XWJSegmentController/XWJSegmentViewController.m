@@ -163,7 +163,6 @@
         UIScrollView *contentScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
         contentScrollView.pagingEnabled = YES;
         contentScrollView.bounces = NO;
-        contentScrollView.backgroundColor = [UIColor yellowColor];
         contentScrollView.delegate = self;
         contentScrollView.showsHorizontalScrollIndicator = NO;
         contentScrollView.contentSize = CGSizeMake(self.segmentChildrenControllers.count * contentScrollView.bounds.size.width, 1);
